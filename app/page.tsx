@@ -106,7 +106,6 @@ const QUICK_ACTIONS = {
   general: [
     "Tell me about ByteCode's services",
     "How can ByteCode help my business?",
-    "What technologies does ByteCode use?",
     "Contact ByteCode support",
   ],
 }
@@ -517,12 +516,12 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
               </div>
               <div>
                 <h1
-                  className={`text-lg font-bold ${uiStyle === "pixel"
+                  className={`text-2xl font-bold ${uiStyle === "pixel"
                     ? "text-gray-900 dark:text-gray-100 pixel-font"
                     : "bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent"
                     }`}
                 >
-                  BYTECODE
+                  ByteCode
                 </h1>
                 <p className={`text-xs text-gray-600 dark:text-gray-400 ${uiStyle === "pixel" ? "pixel-font" : ""}`}>
                   {uiStyle === "pixel" ? "AI Assistant v2.0" : "Futuristic AI Assistant"}
@@ -637,7 +636,7 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
               </div>
               <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
                 {/* UI Style Toggle Button */}
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setUIStyle(uiStyle === "modern" ? "pixel" : "modern")}
@@ -648,7 +647,7 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
                   title={`Switch to ${uiStyle === "modern" ? "Pixel" : "Modern"} UI`}
                 >
                   {uiStyle === "modern" ? <Gamepad2 className="w-3.5 h-3.5" /> : <Palette className="w-3.5 h-3.5" />}
-                </Button>
+                </Button> */}
 
                 {/* Theme Toggle Button */}
                 <Button
