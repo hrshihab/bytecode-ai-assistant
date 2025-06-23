@@ -905,21 +905,21 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
 
           {/* Input */}
           <div
-            className={`flex-shrink-0 p-2 sm:p-4 ${uiStyle === "pixel"
-              ? "bg-gray-200 dark:bg-gray-800 border-t-4 border-gray-400 dark:border-gray-600"
-              : "bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-t border-gray-200 dark:border-cyan-500/20"
-              }`}
+            className={`flex-shrink-0  px-2 sm:px-4`}
           >
             <div className="max-w-4xl mx-auto">
               <form onSubmit={handleSubmit} className="relative">
+                
                 <Textarea
                   value={input}
                   onChange={handleInputChange}
                   placeholder={uiStyle === "pixel" ? `> ${currentMode.placeholder}` : currentMode.placeholder}
-                  className={`min-h-[50px] sm:min-h-[60px] max-h-32 resize-none text-gray-900 dark:text-gray-100 placeholder-gray-600 dark:placeholder-gray-500 focus:ring-0 pr-20 sm:pr-24 text-base sm:text-lg leading-relaxed ${uiStyle === "pixel"
-                    ? "bg-gray-100 dark:bg-gray-900 border-4 border-gray-400 dark:border-gray-600 focus:border-cyan-500 dark:focus:border-cyan-400 pixel-font pixel-border"
-                    : "bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm border-gray-300 dark:border-gray-700/50 focus:border-cyan-500/50"
-                    }`}
+                  className={`min-h-[50px] sm:min-h-[60px] max-h-32 resize-none text-gray-900 dark:text-gray-100 placeholder-gray-600 dark:placeholder-gray-500 focus:ring-0 pr-20 sm:pr-24 text-base sm:text-lg leading-relaxed ${
+                    uiStyle === "pixel"
+                      ? "bg-gray-100 dark:bg-gray-900 shadow-[0px_-4px_12px_rgba(14,165,233,0.12)] border-4 border-gray-400 dark:border-gray-600 focus:border-cyan-500 dark:focus:border-cyan-400 pixel-font pixel-border"
+                      : "bg-gray-100 dark:bg-gray-800/50 backdrop-blur-3xl border-gray-300 dark:border-gray-700/50 focus:border-cyan-500/50 shadow-[0px_-4px_12px_rgba(14,165,233,0.15)]"
+                  }`}
+                  
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault()
@@ -927,6 +927,7 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
                     }
                   }}
                 />
+                
                 <div className="absolute right-1.5 bottom-1.5 flex items-center space-x-1">
                   {isSpeaking && (
                     <Button
@@ -1059,22 +1060,6 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Right Sidebar - Activity Matrix */}
-        <div
-          className={`hidden xl:flex w-80 flex-col ${uiStyle === "pixel"
-            ? "bg-gray-200 dark:bg-gray-800 border-l-4 border-gray-400 dark:border-gray-600"
-            : "bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-gray-200 dark:border-cyan-500/20"
-            }`}
-        >
-          <div
-            className={`p-6 ${uiStyle === "pixel" ? "max-h-[80vh]  pr-2" : ""
-              }`}
-          >
-            <ActivityMatrix messages={messages} currentMode={mode} />
-          </div>
-
         </div>
       </div>
 
