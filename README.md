@@ -1,3 +1,4 @@
+![banner](https://i.ibb.co/0pqSh6jk/image.png)
 
 # ByteCode AI Assistant
 
