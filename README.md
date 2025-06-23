@@ -1,5 +1,3 @@
-````markdown
-![banner](https://bytecodeltd.com/banner.png)
 
 # ByteCode AI Assistant
 
@@ -62,7 +60,7 @@ ByteCode AI Assistant is a next-generation, company-branded AI solution develope
    ```bash
    git clone https://github.com/hrshihab/bytecode-ai-assistant.git
    cd bytecode-ai-assistant
-````
+
 
 2. **Install dependencies**
 
