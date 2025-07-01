@@ -48,7 +48,7 @@ import {
 import ReactMarkdown from "react-markdown"
 import { AIVisualization } from "@/components/ai-visualization"
 import { ActivityMatrix } from "@/components/activity-matrix"
-import { useSpeech } from "@/hooks/use-speech"
+import { useSpeech, SUPPORTED_LANGUAGES } from "@/hooks/use-speech"
 import "../styles/globals.css"
 
 type Mode = "general"
@@ -124,6 +124,7 @@ export default function ByteCodeAssistant() {
   const [selectedProvider, setSelectedProvider] = useState<Provider>("groq")
   const [tempApiKey, setTempApiKey] = useState("")
   const [isProviderMenuOpen, setIsProviderMenuOpen] = useState(false)
+  const [selectedLanguage, setSelectedLanguage] = useState("en-US")
 
   // Dynamic Markdown Components based on UI style
   const MarkdownComponents: Components = useMemo(
@@ -254,7 +255,7 @@ export default function ByteCodeAssistant() {
     stopSpeaking,
     startListening,
     clearError: clearSpeechError,
-  } = useSpeech()
+  } = useSpeech(selectedLanguage)
 
   // Stable API keys state
   const [apiKeys, setApiKeys] = useState(() => ({
@@ -976,7 +977,7 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
 
               {/* Model selector */}
               <div
-                className={`flex items-center justify-between mt-2 text-[10px] sm:text-xs text-gray-600 dark:text-gray-500 ${uiStyle === "pixel" ? "pixel-font" : ""
+                className={`flex items-center justify-between mt-2 text-[10px] sm:text-xs text-gray-600 dark:text-gray-500 ${uiStyle === "pixel" ? "pixel-font" : ""}
                   }`}
               >
                 <span className="hidden sm:inline">
@@ -987,12 +988,21 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
                 <span className="sm:hidden">{uiStyle === "pixel" ? "[TAP TO SEND]" : "Tap to send"}</span>
 
                 <div className="flex items-center space-x-3">
+                  {/* Language Selector - moved here */}
                   <div className="flex items-center space-x-2">
-                    <span className={`${currentMode.color} font-medium ${uiStyle === "pixel" ? "font-bold" : ""}`}>
-                      {uiStyle === "pixel" ? currentMode.label.toUpperCase() : currentMode.label}
-                    </span>
+                    <label htmlFor="language-select" className="text-sm">Language:</label>
+                    <select
+                      id="language-select"
+                      value={selectedLanguage}
+                      onChange={e => setSelectedLanguage(e.target.value)}
+                      className="border rounded px-2 py-1 text-sm"
+                    >
+                      {SUPPORTED_LANGUAGES.map(lang => (
+                        <option key={lang.code} value={lang.code}>{lang.label}</option>
+                      ))}
+                    </select>
                   </div>
-
+                  {/* ByteCode Assistant label removed from here */}
                   <div
                     className={`flex items-center space-x-2 pl-3 ${uiStyle === "pixel"
                       ? "border-l-2 border-gray-400 dark:border-gray-600"
@@ -1036,8 +1046,8 @@ ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
                             <button
                               key={key}
                               onClick={() => handleProviderChange(key as Provider)}
-                              className={`flex items-center justify-between w-full px-3 py-1.5 text-sm text-left hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 ${uiStyle === "pixel" ? "pixel-font" : ""
-                                }`}
+                              className={`flex items-center justify-between w-full px-3 py-1.5 text-sm text-left hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 ${uiStyle === "pixel" ? "pixel-font" : ""}
+                                `}
                             >
                               <span className={`${key === provider ? "font-medium" : ""}`}>
                                 {uiStyle === "pixel" ? providerData.name.toUpperCase() : providerData.name}

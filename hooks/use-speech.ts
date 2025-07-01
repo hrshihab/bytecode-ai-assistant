@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 
-export function useSpeech() {
+export const SUPPORTED_LANGUAGES = [
+  { code: "en-US", label: "English" },
+  { code: "bn-BD", label: "Bangla" },
+];
+
+export function useSpeech(selectedLanguage = "en-US") {
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
@@ -22,9 +27,9 @@ export function useSpeech() {
         (window as any).SpeechRecognition ||
         (window as any).webkitSpeechRecognition;
       const recognitionInstance = new SpeechRecognition();
-      recognitionInstance.continuous = false;
+      recognitionInstance.continuous = true;
       recognitionInstance.interimResults = false;
-      recognitionInstance.lang = "en-US";
+      recognitionInstance.lang = selectedLanguage;
 
       recognitionInstance.onresult = (event: any) => {
         const transcript = event.results[0][0].transcript;
@@ -56,7 +61,7 @@ export function useSpeech() {
     } else {
       setError("Speech synthesis is not supported in your browser.");
     }
-  }, []);
+  }, [selectedLanguage]);
 
   const speakMessage = useCallback((text: string) => {
     const synthesis = synthesisRef.current;
